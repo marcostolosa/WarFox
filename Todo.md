@@ -6,3 +6,4 @@
 	- [ ] Add a DB to maintain a history of unique inbound beacon requests, develop a "per-session" task issuing mechanism
 - [ ] The "Windows Defender" directory that CUBDROP uses and it's contents need to be removed since WARFOX was switched to a DLL, the self-copy function needs to be removed as well
 - [ ] Generated certificates should be written to a "/files" directory
+- [ ] API hashing improvements are needed, functions added since 1.0 aren't hashed and need to be, move the API hashing function/table to it's own header
