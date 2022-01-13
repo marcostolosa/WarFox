@@ -21,9 +21,9 @@ std::string Conversion::wcharToString(wchar_t input[1024])
 	return convertedString;
 }
 
-std::string Conversion::base64Encode(cJSON* dataRequest)
+std::string Conversion::base64Encode(std::string dataRequest)
 {
-	std::string b64Data = base64_encode(reinterpret_cast<BYTE*>(cJSON_Print(dataRequest)), strlen(cJSON_Print(dataRequest)));
+	std::string b64Data = base64_encode(reinterpret_cast<const unsigned char*>(dataRequest.c_str()), dataRequest.length());
 
 	return b64Data;
 }
