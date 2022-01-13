@@ -5,4 +5,4 @@
 - [ ] HIGHTOWER doesn't properly handle multiple sessions
 	- [ ] Add a DB to maintain a history of unique inbound beacon requests, develop a "per-session" task issuing mechanism
 - [ ] The "Windows Defender" directory that CUBDROP uses and it's contents need to be removed since WARFOX was switched to a DLL, the self-copy function needs to be removed as well
-- [ ] Generated certificates should be writtent to a "/files" directory
+- [ ] Generated certificates should be written to a "/files" directory
