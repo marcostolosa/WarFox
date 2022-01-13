@@ -6,7 +6,7 @@
 
 - WARFOX proxies it's network communications through another process via named pipes (see the "Transport Proxy" documentation)
 - Added "CUBDROP", a C# payload dropper and DLL side-sideloading utility that executes payloads created by FILEGUARD
-- Added the ability to generated new self-signed certificates with the usage of `!generate_cert`
+- Added the ability to generated new self-signed certificates with the usage of `!generate_cert` before starting the HTTP server
 
 **Improvements**
 
