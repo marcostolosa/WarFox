@@ -1,4 +1,4 @@
-![version](https://img.shields.io/badge/Version-1.0-red)
+![version](https://img.shields.io/badge/Version-1.1-red)
 ![description](https://img.shields.io/badge/-Command%20%26%20Control-blue)
 ![description](https://img.shields.io/badge/-Windows%20Implant-black)
 
