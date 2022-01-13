@@ -49,8 +49,6 @@ std::vector<std::string> Encrypt::returnConfigValues()
 	return decrypted_config_vec;
 }
 
-// this function works, but server-side padding is conflicts with this AES library
-// - function is not used at the moment
 std::vector<unsigned char> Encrypt::encryptNetworkTraffic(std::string data_to_encrypt)
 {
 	// AES IV - Hex formatted random IV
