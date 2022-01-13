@@ -9,6 +9,7 @@ WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-lay
 ## Included Tools and Scripts
 
 - **WARFOX:** A software implant written in C++ designed to target Windows systems to aid in the post-exploitation phase of an offensive operation. This implant provides the operator with 12 features in the form of tasks. 
+- **CUBDROP:** A C# dropper and DLL-sideloading utility, WARFOX and a legitimate executable are stored as an embedded, compressed, and encrypted resource
 - **HIGHTOWER:** A Python HTTP server that manages and provides tasks to hosts implanted with WARFOX, network communications are encrypted using a self-signed TLS certificate. 
 - **LIGHTBEAM:** A TCP traffic redirector that can be used to mask traffic between WARFOX and HIGHTOWER. This redirector can be daisy-chained to form a multi-level proxy network for WARFOX
 - **FILEGUARD:** A file compressor and crypter, FILEGUARD uses ZLIB and AES-128 (CBC) to obfuscate and pack files
