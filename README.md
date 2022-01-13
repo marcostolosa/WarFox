@@ -2,17 +2,14 @@
 ![description](https://img.shields.io/badge/-Command%20%26%20Control-blue)
 ![description](https://img.shields.io/badge/-Windows%20Implant-black)
 
-
 ![image](https://user-images.githubusercontent.com/54753063/147038254-086fa8a5-4b88-4971-8450-8426a7344314.png)
 
-WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-layered proxy network for C2 communications. This kit was designed to emulate covert APT offensive operations. This kit includes WARFOX (Windows implant), HIGHTOWER (C2 server), and other tools to build configs and set up multi-layered proxy networks.
-
-Inspiration for this kit is taken from implants developed by EMISSARY PANDA (APT 27), and WICKED PANDA (APT 41). Various techniques and TTPs were inspired by public reports on APT malware.
+WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-layered proxy network for C2 communications. This kit was designed to emulate covert APT offensive operations. This kit includes WARFOX (Windows implant), HIGHTOWER (Listening Post), and other tools to build configs and set up a proxy network.
 
 ## Included Tools and Scripts
 
-- **WARFOX:** A software implant written in C++ designed to target Windows systems to aid in the post-exploitation phase of an offensive operation. This implant provides the operator with 13 features in the form of tasks (commands). This implant is designed to evade both host-based and network-based detection.
-- **HIGHTOWER:** An Python HTTP server that manages and provides tasks to hosts implanted with WARFOX, network communications are encrypted using a self-signed TLS certificate. 
+- **WARFOX:** A software implant written in C++ designed to target Windows systems to aid in the post-exploitation phase of an offensive operation. This implant provides the operator with 12 features in the form of tasks. 
+- **HIGHTOWER:** A Python HTTP server that manages and provides tasks to hosts implanted with WARFOX, network communications are encrypted using a self-signed TLS certificate. 
 - **LIGHTBEAM:** A TCP traffic redirector that can be used to mask traffic between WARFOX and HIGHTOWER. This redirector can be daisy-chained to form a multi-level proxy network for WARFOX
 - **FILEGUARD:** A file compressor and crypter, FILEGUARD uses ZLIB and AES-128 (CBC) to obfuscate and pack files
 - **edit_timestamp.py:** Edit the PE timestamp to include a random date going back in time 90 days
