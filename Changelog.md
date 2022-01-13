@@ -15,3 +15,4 @@
 - HIGHTOWER can now handle additional HTTP methods such as HEAD and PUT
 - Added additional error-checking to make HIGHTOWER more user-friendly
 - The build_config.py script now generates an RSA public/private key pair
+- Cleaned up the documentation
