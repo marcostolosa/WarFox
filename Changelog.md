@@ -10,7 +10,7 @@
 
 **Improvements**
 
-- Added a layer of AES-128 CBC encryption to network traffic for WARFOX to ensure the traffic remains encrypted if a TLS MITM attack occurs
+- Added a layer of AES-128 CBC encryption to the network traffic to ensure the traffic remains encrypted if a TLS MITM attack occurs
     - ! WARNING ! -- Currently the key is hardcoded and it's expected to be pre-shared with the server
 - HIGHTOWER can now handle additional HTTP methods such as HEAD and PUT
 - Added additional error-checking to make HIGHTOWER more user-friendly
