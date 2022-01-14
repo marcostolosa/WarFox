@@ -154,7 +154,9 @@ To configure LIGHTBEAM you need to set the following variables:
 
 PEGUARD has a dedicated Github repository [here](https://github.com/FULLSHADE/FileGuard). This utility compresses files with ZLIB and encrypts them with AES-128 in CBC mode, the AES key is randomly generated and appended to the packed file.
 
-![image](https://user-images.githubusercontent.com/54753063/147796580-9d2bb0ea-a6a2-4bee-82b5-534e16e562b8.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54753063/147796580-9d2bb0ea-a6a2-4bee-82b5-534e16e562b8.png" />
+</p>
 
 ### Technical Details
 
