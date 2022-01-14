@@ -27,8 +27,6 @@ WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-lay
 - **edit_timestamp.py:** Edit the PE timestamp to include a random date going back in time 90 days
 - **build_config.py:** Generate AES encrypted configuration data for your IP:PORT pair
 
-----
-
 ## Network Architecture and Design
 
 LIGHTBEAM TCP traffic redirectors can be daisy-chained together to form a multi-layered proxy node network to mask traffic between a host running WARFOX and HIGHTOWER. LIGHTBEAM relies on socat for traffic redirection, the tool can be run on Linux hosts. 
