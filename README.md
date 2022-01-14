@@ -11,6 +11,10 @@
   </a>
     <img src="https://img.shields.io/badge/-Windows%20Implant-black">
   </a>
+    </a>
+    <a href="https://github.com/FULLSHADE/WarFox-C2/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-BSD--3-green">
+  </a>
 </p>
 
 WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-layered proxy network for C2 communications. This kit was designed to emulate covert APT offensive operations. This kit includes WARFOX (Windows implant), HIGHTOWER (Listening Post), and other tools to build configs and set up a proxy network.
