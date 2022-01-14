@@ -109,7 +109,9 @@ HIGHTOWER is a Python based HTTP server that supports WARFOX infections, HIGHTOW
 
 You can use the `!help` terminal command to display the help menu which provides an overview of how to configure the server for the first time, and what tasks you can issue to WARFOX. 
 
-![image](https://user-images.githubusercontent.com/54753063/147890768-689381d6-fe58-4a4c-92f4-c2b3064e7bd0.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54753063/147890768-689381d6-fe58-4a4c-92f4-c2b3064e7bd0.png" />
+</p>
 
 You can use the `!settings` terminal command to display the current server settings. You are required to set a listening port with `!listen` before issuing tasks. 
 
