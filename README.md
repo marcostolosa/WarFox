@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/54753063/149429691-da557530-e120-4ec2-a705-895936c62899.png" />
 </p>
 
-<h2 align="center">WarFox</h2>
+<h1 align="center">WarFox</h1>
 
 <p align="center">
     </a>
