@@ -5,15 +5,14 @@
 <h2 align="center">WarFox</h2>
 
 <p align="center">
+    </a>
       <img src="https://img.shields.io/badge/Version-1.1-red">
+      <a href="https://github.com/FULLSHADE/WarFox-C2/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-BSD--3-green">
   </a>
       <img src="https://img.shields.io/badge/-Command%20%26%20Control-blue">
   </a>
     <img src="https://img.shields.io/badge/-Windows%20Implant-black">
-  </a>
-    </a>
-    <a href="https://github.com/FULLSHADE/WarFox-C2/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-BSD--3-green">
   </a>
 </p>
 
