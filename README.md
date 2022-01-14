@@ -115,13 +115,17 @@ You can use the `!help` terminal command to display the help menu which provides
 
 You can use the `!settings` terminal command to display the current server settings. You are required to set a listening port with `!listen` before issuing tasks. 
 
-![image](https://user-images.githubusercontent.com/54753063/147707918-a11298e8-d5a1-43c8-b14b-f24751de630d.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54753063/147707918-a11298e8-d5a1-43c8-b14b-f24751de630d.png" />
+</p>
 
 The `!listen` server command takes a port to listen on, after executing this command, the SRVPORT setting is populated
 
 After you set a listening port, you can issue new tasks to hosts that beacon to HIGHTOWER using the `!issue` command. Certain tasks such as `rev_shell` require additional data, you can find a list of which commands require data in the technical documentation PDF
 
-![image](https://user-images.githubusercontent.com/54753063/147708078-aaf6ab31-4168-4d35-b336-22c78951799f.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54753063/147708078-aaf6ab31-4168-4d35-b336-22c78951799f.png" />
+</p>
 
 New certificates for enabling SSL/HTTPS can be generated using OpenSSL
 
