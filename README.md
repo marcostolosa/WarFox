@@ -28,7 +28,9 @@ LIGHTBEAM TCP traffic redirectors can be daisy-chained together to form a multi-
 - WARFOX hosts periodically beacon over HTTPS to HIGHTOWERs HTTP server
 - When an operator issues a new task for a WARFOX host, the task command is included in the HTTP response packet, this is processed by WARFOX's tasking/processing engine
 
-![image](https://user-images.githubusercontent.com/54753063/146696216-160b2d0c-294c-4244-9cd0-8f116a12ccc5.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54753063/146696216-160b2d0c-294c-4244-9cd0-8f116a12ccc5.png" />
+</p>
 
 HIGHTOWER relies on two designated HTTPS endpoints to process beaconing check-ins and task command results
 
