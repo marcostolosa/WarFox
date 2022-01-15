@@ -15,6 +15,7 @@
 #include <sstream>
 #include <ntstatus.h>
 #include <ws2tcpip.h>
+#include <shellapi.h>
 
 #pragma comment(lib,"ntdll.lib")
 #pragma comment(lib, "wininet.lib")
