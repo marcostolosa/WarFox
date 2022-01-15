@@ -18,7 +18,7 @@ CUBDROP is a dropper and DLL-sideloading utility that on execution executes WARF
 
 ## Notes
 
-- CUBDROP is originally written in C++, but using Boost GZIP was a problem due to ZLIB version compatibility issues, additionally, statically included a header-only version of ZLIB inflated the compiled CUBDROP binary over 150KB which was an issue
+- CUBDROP was originally written in C++, but using Boost GZIP was a problem due to ZLIB version compatibility issues, additionally, statically included a header-only version of ZLIB inflated the compiled CUBDROP binary over 150KB which was an issue
 - Porting CUBDROP back to C++ can and should be done since C# isn't the best option (being an interpreted language)
 - The current version of CUBDROP doesn't include any string or function call obfuscation, using a free C# obfuscator such as ConfuserEx may be useful but irresponsible
 - This copy of CUBDROP source code includes debug output/statements which would need to be removed 
