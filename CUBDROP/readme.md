@@ -22,3 +22,7 @@ CUBDROP is a dropper and DLL-sideloading utility that on execution executes WARF
 - Porting CUBDROP back to C++ can and should be done since C# isn't the best option (being an interpreted language)
 - The current version of CUBDROP doesn't include any string or function call obfuscation, using a free C# obfuscator such as ConfuserEx may be useful but irresponsible
 - This copy of CUBDROP source code includes debug output/statements which would need to be removed 
+
+## Caveats
+
+- Currently the AES IV is hardcoded by both FILEGUARD and CUBDROP, an alternative would be to randomly generate an IV and appended alongside with the AES key
