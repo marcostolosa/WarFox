@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.IO.Compression;
 
-namespace testing_cb_again
+namespace cubdrop
 {
     public static class StreamExtensions
     {
