@@ -25,4 +25,4 @@ CUBDROP is a dropper and DLL-sideloading utility that on execution executes WARF
 
 ## Caveats
 
-- Currently the AES IV is hardcoded by both FILEGUARD and CUBDROP, an alternative would be to randomly generate an IV and appended alongside with the AES key
+- Currently the AES IV is hardcoded by both FILEGUARD and CUBDROP, an alternative would be to randomly generate an IV and append it alongside the AES key
