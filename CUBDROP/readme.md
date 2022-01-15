@@ -3,7 +3,7 @@
 To create CUBDROP-ready embedded resources you need to use FILEGUARD 
 
 1. Run `Fileguard.exe <file>` to generated a CUBDROP-ready resource file
-2. Add the created `.enc` files to your CUBDROP Visual Studio project and switch their `Build Action` state to `Embedded Resource
+2. Add the created `.enc` files to your CUBDROP Visual Studio project and switch the `Build Action` state to `Embedded Resource`
 3. Compile and run CUBDROP
 
 CUBDROP is a dropper and DLL-sideloading utility that on execution executes WARFOX DLL payloads, CUBDROP performs the following
