@@ -53,6 +53,7 @@ To avoid network detection, WARFOX beaconing and tasking responses were designed
 
 - Beaconing intervals are randomized using jitter to avoid easy-to-spot patterns. This is implemented using a sleep function call with a random value between network requests
 - Network traffic is encrypted using TLS to avoid the ability to write Snort or Suricata rules for traffic patterns. Additionally, the self-generated certificates use null values to avoid being easily detected or blacklisted based on their information
+- An additional layer of AES encryption protects the beacon and task response requests to ensure the traffic remains encrypted even if the TLS traffic is MITM'ed
 
 ## WARFOX
 
