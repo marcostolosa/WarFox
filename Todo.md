@@ -1,6 +1,6 @@
 - [ ] The AES key used to encrypt network traffic is hardcoded and needs to be pre-shared
 	- [ ] Fix: Apply a secure key sharing mechanism via RSA+AES
-- [ ] The AES key used for decrypt the embedded configuration data is hardcoded
+- [ ] The AES key used for decrypting the embedded configuration data is hardcoded
 	- [ ] Fix: Derive the key from the MD5 hash of an obfuscated string
 - [ ] HIGHTOWER doesn't properly handle multiple sessions
 	- [ ] Add a DB to maintain a history of unique inbound beacon requests, develop a "per-session" task issuing mechanism
