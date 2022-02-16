@@ -24,7 +24,7 @@ WARFOX is a software-based HTTPS beaconing Windows implant that uses a multi-lay
 
 - **WARFOX:** A software implant written in C++ designed to target Windows systems to aid in the post-exploitation phase of an offensive operation. This implant provides the operator with 12 features in the form of tasks. 
 - **CUBDROP:** A C# dropper and DLL-sideloading utility, WARFOX and a legitimate executable are stored as an embedded, compressed, and encrypted resource
-- **HIGHTOWER:** A Python HTTP server that manages and provides tasks to hosts implanted with WARFOX, network communications are encrypted using a self-signed TLS certificate. 
+- **HIGHTOWER:** A Python HTTP server that manages and provides tasks to hosts implanted with WARFOX, network communications are encrypted using AES and TLS with self-signed certificates. 
 - **LIGHTBEAM:** A TCP traffic redirector that can be used to mask traffic between WARFOX and HIGHTOWER. This redirector can be daisy-chained to form a multi-level proxy network for WARFOX
 - **FILEGUARD:** A file compressor and crypter, FILEGUARD uses GZIP and AES-128 (CBC) to obfuscate and pack files
 - **edit_timestamp.py:** Edit the PE timestamp to include a random date going back in time 90 days
@@ -53,7 +53,7 @@ To avoid network detection, WARFOX beaconing and tasking responses were designed
 
 - Beaconing intervals are randomized using jitter to avoid easy-to-spot patterns. This is implemented using a sleep function call with a random value between network requests
 - Network traffic is encrypted using TLS to avoid the ability to write Snort or Suricata rules for traffic patterns. Additionally, the self-generated certificates use null values to avoid being easily detected or blacklisted based on their information
-- An additional layer of AES encryption protects the beacon and task response requests to ensure the traffic remains encrypted even if the TLS traffic is MITM'ed
+- An additional layer of AES encryption protects the beacon requests to ensure the traffic remains encrypted even if the TLS traffic is MITM'ed
 
 ## WARFOX
 
@@ -138,11 +138,7 @@ After you set a listening port, you can issue new tasks to hosts that beacon to 
   <img src="https://user-images.githubusercontent.com/54753063/147708078-aaf6ab31-4168-4d35-b336-22c78951799f.png" />
 </p>
 
-New certificates for enabling SSL/HTTPS can be generated using OpenSSL
-
-```
-openssl req -new -x509 -keyout localhost.pem -out localhost.pem -days 365 -nodes
-```
+New certificates for enabling SSL/HTTPS can be generated using the `!sslgen` command, this generates a new certificate which includes blank field values
 
 #### Interaction Command Examples
 
